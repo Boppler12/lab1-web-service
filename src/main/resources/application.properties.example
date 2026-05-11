@@ -4,3 +4,4 @@ spring.datasource.username=root
 spring.datasource.password=password
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+ai.api.key=YOUR_API_KEY_HERE
