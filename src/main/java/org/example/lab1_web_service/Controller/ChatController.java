@@ -30,17 +30,13 @@ public class ChatController {
         Message userMessage = new Message("user", request.message(), sessionId);
         historyManager.addMessage(sessionId, userMessage);
 
-        // 2. Hämta hela historiken (nu inkluderat det senaste meddelandet från användaren)
         List<Message> history = historyManager.getHistory(sessionId);
 
-        // 3. Anropa AI-tjänsten med den uppdaterade historiken
         String aiReplyContent = aiService.getAiResponse(request.personality(), request.message(), history);
 
-        // 4. Spara AI:ns svar i historiken
         Message aiReply = new Message("assistant", aiReplyContent, sessionId);
         historyManager.addMessage(sessionId, aiReply);
 
-        // 5. Returnera svaret till användaren
         return new ChatResponse(request.personality(), aiReplyContent, sessionId);
     }
 }
